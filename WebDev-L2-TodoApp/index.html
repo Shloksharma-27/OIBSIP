@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TaskFlow Pro — Interactive task and workflow management web application with persistent local storage, inline editing, priority filtering, and dual pending/completed lists.">
+  <title>TaskFlow Pro — Modern To-Do & Workflow Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Main Application Header -->
+    <header class="app-header">
+      <div class="brand-bar">
+        <div class="logo">
+          <div class="logo-icon">✓</div>
+          <h1>Task<span>Flow</span> <small class="version-tag">PRO</small></h1>
+        </div>
+        <div class="date-display" id="date-display">Saturday, September 12, 2026</div>
+      </div>
+      <p class="app-sub">Stay focused, organized, and achieve daily productivity milestones.</p>
+    </header>
+
+    <!-- Overall Progress Overview -->
+    <section class="progress-banner">
+      <div class="progress-info">
+        <span class="progress-title">Overall Completion</span>
+        <span class="progress-percentage" id="progress-percent">0%</span>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progress-fill" style="width: 0%;"></div>
+      </div>
+      <div class="stats-pills">
+        <span class="stat-pill total">Total: <strong id="count-total">0</strong></span>
+        <span class="stat-pill pending">Pending: <strong id="count-pending-stat">0</strong></span>
+        <span class="stat-pill completed">Completed: <strong id="count-completed-stat">0</strong></span>
+      </div>
+    </section>
+
+    <!-- Task Creator Card -->
+    <section class="creator-card">
+      <form id="add-task-form" class="task-form">
+        <div class="input-main-row">
+          <input 
+            type="text" 
+            id="task-input" 
+            placeholder="What needs to be accomplished today?" 
+            autocomplete="off"
+            required
+          >
+          <button type="submit" class="btn btn-add" id="add-task-btn">
+            <span>+ Add Task</span>
+          </button>
+        </div>
+
+        <div class="task-options-row">
+          <div class="option-item">
+            <label for="task-priority">Priority:</label>
+            <select id="task-priority">
+              <option value="low">🟢 Low Priority</option>
+              <option value="medium" selected>🟡 Medium Priority</option>
+              <option value="high">🔴 High Priority</option>
+            </select>
+          </div>
+
+          <div class="option-item">
+            <label for="task-category">Category:</label>
+            <select id="task-category">
+              <option value="work">💼 Work</option>
+              <option value="personal">🏠 Personal</option>
+              <option value="study">📚 Study</option>
+              <option value="urgent">⚡ Urgent</option>
+            </select>
+          </div>
+
+          <div class="option-item">
+            <label for="task-due">Due Date:</label>
+            <input type="date" id="task-due">
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Filter & Search Toolbar -->
+    <div class="toolbar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Search tasks by keyword...">
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="high">High Priority</button>
+        <button class="filter-tab" data-filter="work">Work</button>
+        <button class="filter-tab" data-filter="personal">Personal</button>
+      </div>
+    </div>
+
+    <!-- Dual List Columns (Pending & Completed) -->
+    <main class="lists-container">
+      
+      <!-- Pending Tasks List -->
+      <section class="task-column pending-column">
+        <div class="column-header">
+          <div class="column-title-group">
+            <span class="column-dot pending-dot"></span>
+            <h2>Pending Tasks</h2>
+          </div>
+          <span class="counter-badge pending-badge" id="pending-counter">0 pending</span>
+        </div>
+
+        <div class="tasks-list" id="pending-tasks-list">
+          <!-- Dynamically populated or empty state -->
+        </div>
+      </section>
+
+      <!-- Completed Tasks List -->
+      <section class="task-column completed-column">
+        <div class="column-header">
+          <div class="column-title-group">
+            <span class="column-dot completed-dot"></span>
+            <h2>Completed Tasks</h2>
+          </div>
+          <div class="completed-actions">
+            <span class="counter-badge completed-badge" id="completed-counter">0 completed</span>
+            <button class="clear-all-btn" id="clear-completed-btn" title="Clear all completed tasks">Clear All</button>
+          </div>
+        </div>
+
+        <div class="tasks-list" id="completed-tasks-list">
+          <!-- Dynamically populated or empty state -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast-notify"></div>
+
+    <footer class="app-footer">
+      <p>Oasis Infobyte SIP — Web Development & Designing (Level 2, Task 3)</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

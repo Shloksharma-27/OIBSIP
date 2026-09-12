@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VaultAuth — Secure client-side authentication system with SHA-256 cryptographic password hashing, validation, duplicate verification, and protected dashboard.">
+  <title>VaultAuth — Secure Authentication Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="auth-page-wrapper">
+    
+    <!-- Auth Card -->
+    <main class="auth-card">
+      <div class="auth-card-header">
+        <div class="brand-logo">
+          <div class="logo-badge">🛡️</div>
+          <h2>Vault<span>Auth</span></h2>
+        </div>
+        <p class="brand-tagline">Cryptographically Secure Member Portal</p>
+      </div>
+
+      <!-- Tab Switcher -->
+      <div class="tab-switcher">
+        <button type="button" class="tab-btn active" id="tab-login">Sign In</button>
+        <button type="button" class="tab-btn" id="tab-register">Register Account</button>
+      </div>
+
+      <!-- Alert Box -->
+      <div class="alert-banner" id="auth-alert"></div>
+
+      <!-- Sign In Form -->
+      <form id="login-form" class="auth-form active">
+        <div class="form-group">
+          <label for="login-identifier">Username or Email Address</label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input 
+              type="text" 
+              id="login-identifier" 
+              placeholder="e.g. alex.morgan or alex@example.com" 
+              required
+              autocomplete="username"
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="login-password">Password</label>
+          </div>
+          <div class="input-wrap">
+            <span class="input-icon">🔒</span>
+            <input 
+              type="password" 
+              id="login-password" 
+              placeholder="••••••••" 
+              required
+              autocomplete="current-password"
+            >
+            <button type="button" class="toggle-password" data-target="login-password" title="Show/Hide password">👁️</button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="btn-login-submit">
+          <span>Sign In to Dashboard</span>
+          <span class="btn-spinner"></span>
+        </button>
+
+        <div class="form-footer">
+          <p>Don't have an account? <button type="button" class="switch-link" id="goto-register">Create account</button></p>
+        </div>
+      </form>
+
+      <!-- Registration Form -->
+      <form id="register-form" class="auth-form">
+        <div class="form-group">
+          <label for="reg-fullname">Full Name</label>
+          <div class="input-wrap">
+            <span class="input-icon">📛</span>
+            <input 
+              type="text" 
+              id="reg-fullname" 
+              placeholder="Alex Morgan" 
+              required
+              autocomplete="name"
+            >
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="reg-username">Username</label>
+            <div class="input-wrap">
+              <span class="input-icon">@</span>
+              <input 
+                type="text" 
+                id="reg-username" 
+                placeholder="alexmorgan" 
+                required
+                autocomplete="username"
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reg-email">Email Address</label>
+            <div class="input-wrap">
+              <span class="input-icon">✉️</span>
+              <input 
+                type="email" 
+                id="reg-email" 
+                placeholder="alex@example.com" 
+                required
+                autocomplete="email"
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-password">Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔑</span>
+            <input 
+              type="password" 
+              id="reg-password" 
+              placeholder="Min. 8 chars, 1 number, 1 uppercase" 
+              required
+              autocomplete="new-password"
+            >
+            <button type="button" class="toggle-password" data-target="reg-password" title="Show/Hide password">👁️</button>
+          </div>
+          <div class="password-meter" id="pass-meter">
+            <div class="meter-bar"><div class="meter-fill" id="meter-fill"></div></div>
+            <span class="meter-label" id="meter-label">Password Strength: Weak</span>
+          </div>
+          <ul class="requirements-list">
+            <li id="req-len">✗ Minimum 8 characters</li>
+            <li id="req-num">✗ At least 1 number (0-9)</li>
+            <li id="req-case">✗ At least 1 uppercase letter</li>
+          </ul>
+        </div>
+
+        <div class="form-group">
+          <label for="reg-password-confirm">Confirm Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔒</span>
+            <input 
+              type="password" 
+              id="reg-password-confirm" 
+              placeholder="Re-enter password" 
+              required
+              autocomplete="new-password"
+            >
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="btn-register-submit">
+          <span>Create Account</span>
+          <span class="btn-spinner"></span>
+        </button>
+
+        <div class="form-footer">
+          <p>Already have an account? <button type="button" class="switch-link" id="goto-login">Sign in</button></p>
+        </div>
+      </form>
+
+      <!-- Security Notice -->
+      <div class="security-badge">
+        <span>🔒 Client-Side SHA-256 Digest • Plaintext Passwords Never Saved</span>
+      </div>
+    </main>
+
+    <footer class="auth-footer">
+      <p>Oasis Infobyte SIP — Web Development & Designing (Level 2, Task 4)</p>
+    </footer>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

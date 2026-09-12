@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ThermoSync — Real-time interactive multi-unit temperature converter between Celsius, Fahrenheit, and Kelvin with absolute zero validation.">
+  <title>ThermoSync — Temperature Converter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="converter-wrapper">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-pill">
+        <span class="thermometer-icon">🌡️</span>
+        <h1>Thermo<span>Sync</span></h1>
+      </div>
+      <p class="app-tagline">Real-Time Multi-Unit Precision Temperature Converter</p>
+    </header>
+
+    <!-- Main Converter Card -->
+    <main class="converter-card">
+      <div class="converter-body">
+        
+        <!-- Input Section -->
+        <div class="input-pane">
+          <div class="form-group">
+            <label for="temp-input">Enter Temperature Value</label>
+            <div class="input-container">
+              <input 
+                type="number" 
+                id="temp-input" 
+                step="any" 
+                placeholder="e.g. 25" 
+                autocomplete="off"
+                value="25"
+              >
+              <span class="input-clear" id="clear-input" title="Clear input">✕</span>
+            </div>
+            <div class="error-msg" id="input-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Select Source Unit</label>
+            <div class="unit-toggle-group">
+              <label class="unit-radio">
+                <input type="radio" name="source-unit" value="C" checked>
+                <span class="radio-chip">Celsius (°C)</span>
+              </label>
+              <label class="unit-radio">
+                <input type="radio" name="source-unit" value="F">
+                <span class="radio-chip">Fahrenheit (°F)</span>
+              </label>
+              <label class="unit-radio">
+                <input type="radio" name="source-unit" value="K">
+                <span class="radio-chip">Kelvin (K)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Quick Presets -->
+          <div class="presets-wrap">
+            <span class="presets-label">Common Benchmarks:</span>
+            <div class="presets-list">
+              <button type="button" class="preset-btn" data-val="0" data-unit="C">Freezing (0°C)</button>
+              <button type="button" class="preset-btn" data-val="25" data-unit="C">Room Temp (25°C)</button>
+              <button type="button" class="preset-btn" data-val="37" data-unit="C">Body Temp (37°C)</button>
+              <button type="button" class="preset-btn" data-val="100" data-unit="C">Boiling (100°C)</button>
+              <button type="button" class="preset-btn" data-val="-273.15" data-unit="C">Absolute Zero</button>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-convert" id="convert-btn">
+            <span>Calculate Conversion</span>
+            <span class="btn-arrow">➔</span>
+          </button>
+        </div>
+
+        <!-- Visual Thermometer Gauge -->
+        <div class="thermometer-pane">
+          <div class="gauge-card">
+            <div class="thermometer-tube">
+              <div class="mercury-fill" id="mercury-fill" style="height: 45%;"></div>
+              <div class="thermometer-bulb"></div>
+            </div>
+            <div class="gauge-scale">
+              <span>100°C (Boiling)</span>
+              <span>50°C</span>
+              <span>25°C (Room)</span>
+              <span>0°C (Freezing)</span>
+              <span>-50°C (Freezing)</span>
+            </div>
+          </div>
+          <div class="temp-indicator" id="temp-indicator">
+            <span class="indicator-badge" id="indicator-status">Moderate</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Conversion Results Grid -->
+      <section class="results-section">
+        <h3 class="results-heading">Converted Values</h3>
+        <div class="results-grid">
+          
+          <!-- Celsius Card -->
+          <div class="result-card" id="card-celsius">
+            <div class="card-unit">Celsius</div>
+            <div class="card-val" id="res-celsius">25.00</div>
+            <div class="card-symbol">°C</div>
+            <div class="card-formula" id="formula-celsius">Base Value</div>
+          </div>
+
+          <!-- Fahrenheit Card -->
+          <div class="result-card" id="card-fahrenheit">
+            <div class="card-unit">Fahrenheit</div>
+            <div class="card-val" id="res-fahrenheit">77.00</div>
+            <div class="card-symbol">°F</div>
+            <div class="card-formula" id="formula-fahrenheit">(25 × 9/5) + 32</div>
+          </div>
+
+          <!-- Kelvin Card -->
+          <div class="result-card" id="card-kelvin">
+            <div class="card-unit">Kelvin</div>
+            <div class="card-val" id="res-kelvin">298.15</div>
+            <div class="card-symbol">K</div>
+            <div class="card-formula" id="formula-kelvin">25 + 273.15</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Absolute Zero Warning Banner -->
+      <div class="alert-box" id="absolute-zero-alert">
+        <span class="alert-icon">⚠️</span>
+        <div class="alert-content">
+          <strong>Physics Edge Case Warning (Absolute Zero Violation):</strong>
+          <p>The entered temperature is below Absolute Zero (0 Kelvin / -273.15°C / -459.67°F), the theoretical thermodynamic limit where molecular motion stops.</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Oasis Infobyte SIP — Web Development & Designing Track (Level 1, Task 3)</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

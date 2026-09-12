@@ -1,0 +1,499 @@
+/* ==========================================================================
+   Dr. A. P. J. Abdul Kalam Tribute Page Styles
+   ========================================================================== */
+
+:root {
+  --font-serif-display: 'Cinzel', serif;
+  --font-serif-quote: 'Playfair Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Section Backgrounds */
+  --bg-hero: #0c1222;
+  --bg-quote: #111a2e;
+  --bg-bio: #090e1a;
+  --bg-timeline: #131b2e;
+  --bg-awards: #0a0d14;
+  --bg-footer: #05080e;
+
+  --card-bg: rgba(23, 32, 54, 0.7);
+  --card-border: rgba(255, 255, 255, 0.08);
+
+  --accent-gold: #fbbf24;
+  --accent-gold-glow: rgba(251, 191, 36, 0.25);
+  --accent-cyan: #38bdf8;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-bio);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.tribute-hero {
+  background: linear-gradient(180deg, var(--bg-hero) 0%, var(--bg-quote) 100%);
+  padding: 5rem 0 4rem 0;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.national-emblem-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--accent-gold);
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+}
+
+.tribute-name {
+  font-family: var(--font-serif-display);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.tribute-dates {
+  font-family: var(--font-serif-quote);
+  font-size: 1.15rem;
+  color: var(--accent-gold);
+  font-style: italic;
+  margin-bottom: 1.2rem;
+}
+
+.tribute-tagline {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+}
+
+.hero-image-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.portrait-card {
+  background: var(--card-bg);
+  border: 2px solid rgba(251, 191, 36, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 1.2rem;
+  max-width: 320px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px var(--accent-gold-glow);
+}
+
+.portrait-img {
+  width: 100%;
+  height: 280px;
+  background: #0f172a;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.portrait-vector {
+  width: 100%;
+  height: 100%;
+}
+
+.portrait-caption {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.portrait-caption strong {
+  font-family: var(--font-serif-display);
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.portrait-caption span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Featured Quote Section
+   ========================================================================== */
+.quote-section {
+  background-color: var(--bg-quote);
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--card-border);
+  text-align: center;
+}
+
+.featured-quote {
+  max-width: 820px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.featured-quote p {
+  font-family: var(--font-serif-quote);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-style: italic;
+  color: #fef08a;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.featured-quote cite {
+  font-family: var(--font-serif-display);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  font-style: normal;
+  display: block;
+}
+
+/* ==========================================================================
+   Section Title Common
+   ========================================================================== */
+.section-title-box {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.sub-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--accent-gold);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.main-title {
+  font-family: var(--font-serif-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Biography Section
+   ========================================================================== */
+.biography-section {
+  background-color: var(--bg-bio);
+  padding: 5.5rem 0;
+}
+
+.bio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.bio-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem;
+  transition: all 0.3s ease;
+}
+
+.bio-card:hover {
+  border-color: rgba(251, 191, 36, 0.4);
+  transform: translateY(-4px);
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.bio-card h3 {
+  font-family: var(--font-serif-display);
+  font-size: 1.25rem;
+  color: var(--accent-gold);
+  margin-bottom: 1rem;
+}
+
+.bio-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.bio-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Timeline Section
+   ========================================================================== */
+.timeline-section {
+  background-color: var(--bg-timeline);
+  padding: 5.5rem 0;
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.timeline {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background: rgba(251, 191, 36, 0.3);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+}
+
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item.right {
+  left: 50%;
+  text-align: left;
+}
+
+.timeline-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: var(--accent-gold);
+  border: 3px solid var(--bg-timeline);
+  border-radius: 50%;
+  top: 22px;
+  z-index: 1;
+  box-shadow: 0 0 10px var(--accent-gold);
+}
+
+.timeline-item.left .timeline-dot {
+  right: -7px;
+}
+
+.timeline-item.right .timeline-dot {
+  left: -7px;
+}
+
+.timeline-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+}
+
+.timeline-year {
+  font-family: var(--font-serif-display);
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--accent-gold);
+  display: inline-block;
+  margin-bottom: 0.3rem;
+}
+
+.timeline-card h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.timeline-card p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Quotes Cards Section
+   ========================================================================== */
+.quotes-grid-section {
+  background-color: var(--bg-bio);
+  padding: 5.5rem 0;
+}
+
+.quotes-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.quote-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-left: 4px solid var(--accent-gold);
+  border-radius: var(--radius-md);
+  padding: 1.8rem;
+}
+
+.quote-card p {
+  font-family: var(--font-serif-quote);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #f1f5f9;
+}
+
+/* ==========================================================================
+   Awards Section
+   ========================================================================== */
+.awards-section {
+  background-color: var(--bg-awards);
+  padding: 5.5rem 0;
+  border-top: 1px solid var(--card-border);
+}
+
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.award-item {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.8rem;
+  text-align: center;
+}
+
+.award-item.highest {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 25px rgba(251, 191, 36, 0.2);
+}
+
+.award-badge {
+  font-family: var(--font-serif-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  background: rgba(251, 191, 36, 0.12);
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  display: inline-block;
+  margin-bottom: 0.8rem;
+}
+
+.award-item h4 {
+  font-family: var(--font-serif-display);
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.award-item p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.tribute-footer {
+  background-color: var(--bg-footer);
+  border-top: 1px solid var(--card-border);
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.footer-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.tribute-source {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.footer-sub {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.back-to-top {
+  font-size: 0.85rem;
+  color: var(--accent-gold);
+  margin-top: 0.5rem;
+}
+
+.back-to-top:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 860px) {
+  .bio-grid, .quotes-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .awards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .timeline::after {
+    left: 20px;
+  }
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 10px;
+    text-align: left !important;
+  }
+  .timeline-item.right {
+    left: 0;
+  }
+  .timeline-item.left .timeline-dot,
+  .timeline-item.right .timeline-dot {
+    left: 13px;
+  }
+}

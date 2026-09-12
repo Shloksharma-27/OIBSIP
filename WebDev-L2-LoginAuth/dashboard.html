@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VaultAuth Protected Dashboard — Authenticated Member Portal with session verification and user profile management.">
+  <title>VaultAuth — Member Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+  
+  <!-- Protected Header Navigation -->
+  <header class="dash-navbar">
+    <div class="dash-nav-container">
+      <div class="brand-logo">
+        <div class="logo-badge">🛡️</div>
+        <h2>Vault<span>Auth</span> <span class="portal-badge">PORTAL</span></h2>
+      </div>
+
+      <div class="user-nav-profile">
+        <div class="user-avatar" id="dash-avatar">U</div>
+        <div class="user-details-mini">
+          <span class="user-display-name" id="dash-name-top">Loading...</span>
+          <span class="user-display-role" id="dash-email-top">Loading...</span>
+        </div>
+        <button type="button" class="btn-logout" id="btn-logout" title="Sign out of active session">
+          <span>Logout</span> ⏻
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Dashboard Content -->
+  <main class="dash-container">
+    
+    <!-- Welcome Banner -->
+    <section class="dash-banner">
+      <div class="banner-text">
+        <h1>Welcome back, <span class="accent-text" id="dash-welcome-name">User</span>!</h1>
+        <p>Your session is active and securely authenticated with SHA-256 cryptographic verification.</p>
+      </div>
+      <div class="session-status-badge">
+        <span class="pulse-dot"></span>
+        <span>SESSION ACTIVE</span>
+      </div>
+    </section>
+
+    <!-- Metrics Cards Grid -->
+    <section class="dash-metrics-grid">
+      <div class="dash-card metric-box">
+        <div class="metric-icon">🔐</div>
+        <div class="metric-info">
+          <span class="metric-title">Security Level</span>
+          <strong class="metric-value text-emerald">Maximum (SHA-256)</strong>
+        </div>
+      </div>
+
+      <div class="dash-card metric-box">
+        <div class="metric-icon">🕒</div>
+        <div class="metric-info">
+          <span class="metric-title">Last Authentication</span>
+          <strong class="metric-value" id="dash-last-login">Just now</strong>
+        </div>
+      </div>
+
+      <div class="dash-card metric-box">
+        <div class="metric-icon">🛡️</div>
+        <div class="metric-info">
+          <span class="metric-title">Account Status</span>
+          <strong class="metric-value text-cyan">Verified Member</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Profile & Session Details Grid -->
+    <div class="dash-details-grid">
+      
+      <!-- Account Profile Card -->
+      <section class="dash-card profile-card">
+        <div class="card-header">
+          <h3>Account Information</h3>
+          <span class="card-tag">Profile</span>
+        </div>
+        <div class="profile-details-list">
+          <div class="detail-row">
+            <span class="detail-label">Full Name:</span>
+            <strong class="detail-val" id="profile-fullname">--</strong>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Username:</span>
+            <strong class="detail-val mono" id="profile-username">--</strong>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Email Address:</span>
+            <strong class="detail-val mono" id="profile-email">--</strong>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Account ID:</span>
+            <strong class="detail-val mono" id="profile-id">--</strong>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Registered Since:</span>
+            <strong class="detail-val" id="profile-joined">--</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- Active Session & Security Inspection -->
+      <section class="dash-card session-card">
+        <div class="card-header">
+          <h3>Active Session Telemetry</h3>
+          <span class="card-tag">Encrypted</span>
+        </div>
+        <div class="session-inspector">
+          <p class="inspector-desc">
+            Client-side cryptographic session token generated upon signature verification:
+          </p>
+          <div class="token-box">
+            <span class="token-label">SESSION TOKEN:</span>
+            <code class="token-val" id="session-token-val">Loading...</code>
+          </div>
+          <div class="security-checklist">
+            <div class="sec-item">
+              <span class="sec-icon">✓</span>
+              <span>Passphrase hashed with SHA-256 prior to persistent storage</span>
+            </div>
+            <div class="sec-item">
+              <span class="sec-icon">✓</span>
+              <span>Unauthorized direct URL route injection prevented</span>
+            </div>
+            <div class="sec-item">
+              <span class="sec-icon">✓</span>
+              <span>Session invalidation executed on explicit sign-out</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="dash-footer">
+    <p>Oasis Infobyte SIP — Web Development & Designing (Level 2, Task 4: Login Authentication System)</p>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script>
+    // Route guard: Require authentication
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = VaultAuth.requireAuth();
+      if (!user) return; // redirected
+
+      const session = VaultAuth.getCurrentSession();
+
+      // Populate user info
+      document.getElementById('dash-welcome-name').textContent = user.fullName.split(' ')[0] || user.username;
+      document.getElementById('dash-name-top').textContent = user.fullName;
+      document.getElementById('dash-email-top').textContent = `@${user.username}`;
+      document.getElementById('dash-avatar').textContent = (user.fullName[0] || user.username[0] || 'U').toUpperCase();
+
+      document.getElementById('profile-fullname').textContent = user.fullName;
+      document.getElementById('profile-username').textContent = `@${user.username}`;
+      document.getElementById('profile-email').textContent = user.email;
+      document.getElementById('profile-id').textContent = user.id;
+      
+      const regDate = new Date(user.registeredAt);
+      document.getElementById('profile-joined').textContent = isNaN(regDate.getTime()) ? 'Today' : regDate.toLocaleDateString();
+
+      const lastLoginDate = new Date(user.lastLogin);
+      document.getElementById('dash-last-login').textContent = isNaN(lastLoginDate.getTime()) ? 'Active now' : lastLoginDate.toLocaleTimeString();
+
+      if (session) {
+        document.getElementById('session-token-val').textContent = session.token;
+      }
+
+      // Logout handler
+      document.getElementById('btn-logout').addEventListener('click', () => {
+        VaultAuth.logout();
+        window.location.href = 'index.html?logged_out=1';
+      });
+    });
+  </script>
+</body>
+</html>

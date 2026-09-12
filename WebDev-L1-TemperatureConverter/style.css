@@ -1,0 +1,447 @@
+/* ==========================================================================
+   ThermoSync Temperature Converter Styles
+   ========================================================================== */
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --bg-dark: #090d16;
+  --bg-card: rgba(18, 24, 38, 0.85);
+  --bg-input: #0e1422;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-glow: rgba(99, 102, 241, 0.4);
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --primary-accent: #6366f1;
+  --cyan-accent: #06b6d4;
+  --hot-color: #ef4444;
+  --cold-color: #3b82f6;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 40%);
+}
+
+.converter-wrapper {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* App Header */
+.app-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.thermometer-icon {
+  font-size: 2rem;
+}
+
+.logo-pill h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.logo-pill h1 span {
+  color: var(--cyan-accent);
+}
+
+.app-tagline {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Main Card */
+.converter-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+}
+
+.converter-body {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Input Styles */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#temp-input {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+#temp-input:focus {
+  border-color: var(--cyan-accent);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+}
+
+.input-clear {
+  position: absolute;
+  right: 1.2rem;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.input-clear:hover {
+  color: #fff;
+}
+
+.error-msg {
+  color: #f87171;
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+  min-height: 1.2rem;
+  font-weight: 500;
+}
+
+/* Radio Units Toggle */
+.unit-toggle-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+
+.unit-radio {
+  cursor: pointer;
+}
+
+.unit-radio input {
+  display: none;
+}
+
+.radio-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0.5rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.unit-radio input:checked + .radio-chip {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: var(--primary-accent);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.25);
+}
+
+/* Presets */
+.presets-wrap {
+  margin-bottom: 1.5rem;
+}
+
+.presets-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.presets-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.preset-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.preset-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Convert Button */
+.btn-convert {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+}
+
+.btn-convert:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+/* Thermometer Gauge Pane */
+.thermometer-pane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.gauge-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 180px;
+}
+
+.thermometer-tube {
+  position: relative;
+  width: 18px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  border: 2px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2px;
+}
+
+.mercury-fill {
+  width: 100%;
+  background: linear-gradient(to top, #3b82f6, #ef4444);
+  border-radius: 10px;
+  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.thermometer-bulb {
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  background: #3b82f6;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+}
+
+.gauge-scale {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 150px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+
+.temp-indicator {
+  margin-top: 1.5rem;
+}
+
+.indicator-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--cyan-accent);
+}
+
+/* Results Grid */
+.results-section {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.results-heading {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+.result-card {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.result-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-3px);
+}
+
+.card-unit {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.card-val {
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.card-symbol {
+  font-size: 0.9rem;
+  color: var(--cyan-accent);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.card-formula {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+}
+
+/* Absolute Zero Alert */
+.alert-box {
+  display: none;
+  margin-top: 1.5rem;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.2rem;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.alert-box.visible {
+  display: flex;
+}
+
+.alert-icon {
+  font-size: 1.3rem;
+}
+
+.alert-content strong {
+  color: #fca5a5;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.alert-content p {
+  font-size: 0.85rem;
+  color: #fecaca;
+  line-height: 1.4;
+}
+
+/* Footer */
+.app-footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+@media (max-width: 768px) {
+  .converter-body {
+    grid-template-columns: 1fr;
+  }
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+}
