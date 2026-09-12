@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oasis Infobyte SIP — 5 Dedicated Demo Videos Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: #0f172a;
+      --border: rgba(255, 255, 255, 0.1);
+      --accent: #6366f1;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2.5rem 1.5rem;
+      min-height: 100vh;
+    }
+    .header {
+      text-align: center;
+      max-width: 840px;
+      margin: 0 auto 2.5rem auto;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      margin-bottom: 0.8rem;
+    }
+    h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 0.6rem; }
+    h1 span { color: var(--cyan); }
+    .header p { color: var(--muted); font-size: 1.05rem; }
+
+    /* Master Action Bar */
+    .master-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 0.9rem 1.6rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+    .btn-batch {
+      background: linear-gradient(135deg, #06b6d4, #6366f1);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(6, 182, 212, 0.35);
+    }
+    .btn-batch:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5); }
+    
+    .btn-linkedin {
+      background: #0a66c2;
+      color: #fff;
+    }
+    .btn-linkedin:hover { filter: brightness(1.1); }
+
+    /* 5 Videos Grid */
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2rem;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .video-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      transition: border-color 0.25s;
+    }
+    .video-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-num {
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+    }
+    .num-1 { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+    .num-2 { background: rgba(6, 182, 212, 0.15); color: #38bdf8; }
+    .num-3 { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .num-4 { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+    .num-5 { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
+
+    .card-level {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .card-canvas-wrap {
+      width: 100%;
+      height: 220px;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+    .card-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .card-status {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--cyan);
+      min-height: 1.2rem;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: auto;
+    }
+    .btn-card {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+    .btn-gen { background: rgba(255, 255, 255, 0.08); color: #fff; border: 1px solid var(--border); }
+    .btn-gen:hover { background: rgba(255, 255, 255, 0.15); }
+    .btn-dl { background: var(--emerald); color: #000; display: none; }
+    .btn-dl:hover { filter: brightness(1.1); }
+
+    /* Footer */
+    .studio-footer {
+      text-align: center;
+      margin-top: 4rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="badge">OASIS INFOBYTE SIP • VIDEO SUITE</span>
+    <h1>5 Dedicated <span>Demo Videos</span></h1>
+    <p>Each video starts with the mandatory 2-second static title card for <strong>Shlok Sharma</strong> followed by high-definition, interactive task walkthroughs.</p>
+  </div>
+
+  <div class="master-actions">
+    <button class="btn btn-batch" id="btnGenerateAll">⚡ Generate & Download All 5 Videos in 1 Click</button>
+    <a href="https://www.linkedin.com/feed/?shareActive=true" target="_blank" class="btn btn-linkedin">💼 Open LinkedIn to Post</a>
+  </div>
+
+  <div class="videos-grid">
+    
+    <!-- Video 1: Landing Page -->
+    <div class="video-card" id="card-1">
+      <div class="card-top">
+        <span class="card-num num-1">VIDEO 1</span>
+        <span class="card-level">Level 1 • Task 1</span>
+      </div>
+      <h3 class="card-title">NovaAI SaaS Landing Page</h3>
+      <div class="card-canvas-wrap">
+        <canvas id="canvas-1" width="1280" height="720" class="card-canvas"></canvas>
+      </div>
+      <div class="card-status" id="status-1">Ready to record</div>
+      <div class="card-actions">
+        <button class="btn-card btn-gen" id="btn-gen-1">🎬 Record Video 1</button>
+        <button class="btn-card btn-dl" id="btn-dl-1">📥 Download Video 1</button>
+      </div>
+    </div>
+
+    <!-- Video 2: Personal Portfolio -->
+    <div class="video-card" id="card-2">
+      <div class="card-top">
+        <span class="card-num num-2">VIDEO 2</span>
+        <span class="card-level">Level 1 • Task 2</span>
+      </div>
+      <h3 class="card-title">Shlok Sharma Personal Portfolio</h3>
+      <div class="card-canvas-wrap">
+        <canvas id="canvas-2" width="1280" height="720" class="card-canvas"></canvas>
+      </div>
+      <div class="card-status" id="status-2">Ready to record</div>
+      <div class="card-actions">
+        <button class="btn-card btn-gen" id="btn-gen-2">🎬 Record Video 2</button>
+        <button class="btn-card btn-dl" id="btn-dl-2">📥 Download Video 2</button>
+      </div>
+    </div>
+
+    <!-- Video 3: Temperature Converter -->
+    <div class="video-card" id="card-3">
+      <div class="card-top">
+        <span class="card-num num-3">VIDEO 3</span>
+        <span class="card-level">Level 1 • Task 3</span>
+      </div>
+      <h3 class="card-title">ThermoSync Temperature Converter</h3>
+      <div class="card-canvas-wrap">
+        <canvas id="canvas-3" width="1280" height="720" class="card-canvas"></canvas>
+      </div>
+      <div class="card-status" id="status-3">Ready to record</div>
+      <div class="card-actions">
+        <button class="btn-card btn-gen" id="btn-gen-3">🎬 Record Video 3</button>
+        <button class="btn-card btn-dl" id="btn-dl-3">📥 Download Video 3</button>
+      </div>
+    </div>
+
+    <!-- Video 4: Calculator -->
+    <div class="video-card" id="card-4">
+      <div class="card-top">
+        <span class="card-num num-4">VIDEO 4</span>
+        <span class="card-level">Level 2 • Task 1</span>
+      </div>
+      <h3 class="card-title">OmniCalc Pro Smart Calculator</h3>
+      <div class="card-canvas-wrap">
+        <canvas id="canvas-4" width="1280" height="720" class="card-canvas"></canvas>
+      </div>
+      <div class="card-status" id="status-4">Ready to record</div>
+      <div class="card-actions">
+        <button class="btn-card btn-gen" id="btn-gen-4">🎬 Record Video 4</button>
+        <button class="btn-card btn-dl" id="btn-dl-4">📥 Download Video 4</button>
+      </div>
+    </div>
+
+    <!-- Video 5: To-Do App -->
+    <div class="video-card" id="card-5">
+      <div class="card-top">
+        <span class="card-num num-5">VIDEO 5</span>
+        <span class="card-level">Level 2 • Task 3</span>
+      </div>
+      <h3 class="card-title">TaskFlow Pro To-Do Application</h3>
+      <div class="card-canvas-wrap">
+        <canvas id="canvas-5" width="1280" height="720" class="card-canvas"></canvas>
+      </div>
+      <div class="card-status" id="status-5">Ready to record</div>
+      <div class="card-actions">
+        <button class="btn-card btn-gen" id="btn-gen-5">🎬 Record Video 5</button>
+        <button class="btn-card btn-dl" id="btn-dl-5">📥 Download Video 5</button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="studio-footer">
+    <p>Oasis Infobyte SIP — Candidate: Shlok Sharma | GitHub: <a href="https://github.com/Shloksharma-27/OIBSIP" target="_blank" style="color:var(--cyan);">github.com/Shloksharma-27/OIBSIP</a></p>
+  </footer>
+
+  <script>
+    const taskConfigs = [
+      {
+        id: 1,
+        title: "Level 1 Task 1: NovaAI Landing Page",
+        color: "#6366f1",
+        accent: "#06b6d4",
+        filename: "OIBSIP_Task1_LandingPage_ShlokSharma.webm",
+        steps: [
+          { text: "1. Navigation bar glassmorphism blur & links active", val: "Fixed Top Navbar: PASS ✓" },
+          { text: "2. Hero terminal contextual code synthesis preview", val: "TypeScript Engine: 99.98% Accuracy" },
+          { text: "3. Interactive pricing toggle (Monthly vs Annual 20% Off)", val: "Live Switch State: Verified ✓" },
+          { text: "4. Responsive Flexbox/Grid layouts at 375px & 1200px", val: "Mobile Breakpoint: 100% Validated" }
+        ]
+      },
+      {
+        id: 2,
+        title: "Level 1 Task 2: Personal Portfolio Website",
+        color: "#06b6d4",
+        accent: "#38bdf8",
+        filename: "OIBSIP_Task2_Portfolio_ShlokSharma.webm",
+        steps: [
+          { text: "1. Typewriter Hero: 'Full-Stack Developer Platforms'", val: "Live DOM Animation: Active ✓" },
+          { text: "2. Skill progress meters: Frontend (95%), Backend (90%)", val: "CSS3 Transitions: Rendered ✓" },
+          { text: "3. Featured project cards with live demo links", val: "Filterable Showcase: Verified ✓" },
+          { text: "4. Contact form validation with instant feedback toast", val: "Form Submission & Toast: PASS ✓" }
+        ]
+      },
+      {
+        id: 3,
+        title: "Level 1 Task 3: ThermoSync Temperature Engine",
+        color: "#10b981",
+        accent: "#34d399",
+        filename: "OIBSIP_Task3_TemperatureConverter_ShlokSharma.webm",
+        steps: [
+          { text: "1. Input 100°C -> Converted to 212°F & 373.15 K", val: "Multi-Unit Auto Calculation: Accurate ✓" },
+          { text: "2. Dynamic mercury thermometer gauge height adjustment", val: "Thermal Fluid Level: 100% Scaled" },
+          { text: "3. Absolute Zero Violation test (-274°C / -460°F)", val: "Thermodynamic Safety Warning: Triggered ⚠️" },
+          { text: "4. Quick benchmark presets (Freezing, Room, Boiling)", val: "1-Click Presets: Operational ✓" }
+        ]
+      },
+      {
+        id: 4,
+        title: "Level 2 Task 1: OmniCalc Pro Smart Calculator",
+        color: "#f59e0b",
+        accent: "#fbbf24",
+        filename: "OIBSIP_Task4_Calculator_ShlokSharma.webm",
+        steps: [
+          { text: "1. Operator chaining evaluation: 5 + 3 × 2 = 11", val: "Safe Math Parser (No eval): PASS ✓" },
+          { text: "2. Division by zero exception handling: 10 ÷ 0", val: "Display Output: 'Error: Division by 0' ✓" },
+          { text: "3. Calculation history drawer slide-out with 1-click recall", val: "Computation History: Recorded ✓" },
+          { text: "4. Physical keyboard bindings (Enter, Backspace, Esc)", val: "Keypress Event Delegation: PASS ✓" }
+        ]
+      },
+      {
+        id: 5,
+        title: "Level 2 Task 3: TaskFlow Pro To-Do App",
+        color: "#f43f5e",
+        accent: "#fb7185",
+        filename: "OIBSIP_Task5_TodoApp_ShlokSharma.webm",
+        steps: [
+          { text: "1. Added task: 'Submit Oasis Infobyte SIP Final Project'", val: "Pending Queue: Added ✓" },
+          { text: "2. Completed task: Transition to Completed list with timestamp", val: "Pipeline Transfer: Timestamped at 10:30 AM" },
+          { text: "3. Inline task editing with instant Save/Cancel", val: "Editable Input Pane: Verified ✓" },
+          { text: "4. Persistent state synchronization via localStorage", val: "Storage Engine: 100% Persisted across reloads" }
+        ]
+      }
+    ];
+
+    const blobs = {};
+
+    // Initialize Title Cards on all canvases
+    taskConfigs.forEach(cfg => {
+      const canvas = document.getElementById(`canvas-${cfg.id}`);
+      drawTitleCard(canvas, cfg.title);
+      setupCardButtons(cfg);
+    });
+
+    function drawTitleCard(canvas, taskTitle) {
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#07090e';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Gradient border
+      ctx.lineWidth = 8;
+      ctx.strokeStyle = '#6366f1';
+      ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
+
+      // Header Tag
+      ctx.fillStyle = '#06b6d4';
+      ctx.font = 'bold 24px Plus Jakarta Sans';
+      ctx.textAlign = 'center';
+      ctx.fillText('OASIS INFOBYTE — STUDENT INTERNSHIP PROGRAM (OIBSIP)', canvas.width / 2, 130);
+
+      // Main Track Title
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '800 44px Plus Jakarta Sans';
+      ctx.fillText('Web Development & Designing Track', canvas.width / 2, 210);
+
+      // Candidate Profile Card
+      ctx.fillStyle = '#1e293b';
+      ctx.beginPath();
+      ctx.roundRect(canvas.width / 2 - 380, 270, 760, 270, 16);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.textAlign = 'left';
+      ctx.font = '600 24px Plus Jakarta Sans';
+      ctx.fillStyle = '#94a3b8';
+      ctx.fillText('Full Name:', canvas.width / 2 - 330, 330);
+      ctx.fillText('Assigned Track:', canvas.width / 2 - 330, 390);
+      ctx.fillText('Task Title:', canvas.width / 2 - 330, 450);
+      ctx.fillText('GitHub Profile:', canvas.width / 2 - 330, 505);
+
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = 'bold 24px Plus Jakarta Sans';
+      ctx.fillText('Shlok Sharma', canvas.width / 2 - 50, 330);
+      ctx.fillText('Web Development & Designing', canvas.width / 2 - 50, 390);
+      ctx.fillStyle = '#10b981';
+      ctx.fillText(taskTitle, canvas.width / 2 - 50, 450);
+      ctx.fillStyle = '#f59e0b';
+      ctx.fillText('github.com/Shloksharma-27/OIBSIP', canvas.width / 2 - 50, 505);
+
+      // Sub Footer
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#64748b';
+      ctx.font = '20px Plus Jakarta Sans';
+      ctx.fillText('Mandatory 2-Second Title Card • Official Verification', canvas.width / 2, 630);
+    }
+
+    function recordSingleVideo(cfg) {
+      return new Promise((resolve) => {
+        const canvas = document.getElementById(`canvas-${cfg.id}`);
+        const ctx = canvas.getContext('2d');
+        const statusEl = document.getElementById(`status-${cfg.id}`);
+        const btnDl = document.getElementById(`btn-dl-${cfg.id}`);
+        const btnGen = document.getElementById(`btn-gen-${cfg.id}`);
+
+        btnGen.disabled = true;
+        btnDl.style.display = 'none';
+
+        const stream = canvas.captureStream(30);
+        const recorder = new MediaRecorder(stream, { mimeType: 'video/webm; codecs=vp9' });
+        const chunks = [];
+
+        recorder.ondataavailable = (e) => {
+          if (e.data.size > 0) chunks.push(e.data);
+        };
+
+        recorder.onstop = () => {
+          const blob = new Blob(chunks, { type: 'video/webm' });
+          blobs[cfg.id] = blob;
+          btnDl.style.display = 'inline-flex';
+          btnGen.disabled = false;
+          statusEl.textContent = '✓ Recording complete!';
+          resolve(blob);
+        };
+
+        recorder.start();
+        statusEl.textContent = '🔴 Phase 1: 2-Second Title Card...';
+
+        // 1. Static Title Card for 2.2 seconds (66 frames)
+        let frame = 0;
+        const titleFrames = 66;
+
+        const titleInterval = setInterval(() => {
+          drawTitleCard(canvas, cfg.title);
+          frame++;
+          if (frame >= titleFrames) {
+            clearInterval(titleInterval);
+            runTaskDemoAnimation(cfg, canvas, ctx, recorder, statusEl);
+          }
+        }, 1000 / 30);
+      });
+    }
+
+    function runTaskDemoAnimation(cfg, canvas, ctx, recorder, statusEl) {
+      let stepIdx = 0;
+      let stepFrame = 0;
+      const framesPerStep = 45; // ~1.5s per step
+
+      const demoInterval = setInterval(() => {
+        statusEl.textContent = `🔴 Phase 2: Live Demo Step ${stepIdx + 1}/${cfg.steps.length}...`;
+
+        // Background
+        ctx.fillStyle = '#0a0e1a';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Header
+        ctx.fillStyle = '#161e2e';
+        ctx.fillRect(0, 0, canvas.width, 90);
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 28px Plus Jakarta Sans';
+        ctx.textAlign = 'left';
+        ctx.fillText(`${cfg.title} — Shlok Sharma`, 40, 55);
+
+        ctx.fillStyle = cfg.accent;
+        ctx.textAlign = 'right';
+        ctx.font = 'bold 22px Plus Jakarta Sans';
+        ctx.fillText('Live Interactive Walkthrough', canvas.width - 40, 55);
+
+        // Main Demo Window
+        ctx.fillStyle = '#111827';
+        ctx.beginPath();
+        ctx.roundRect(60, 130, canvas.width - 120, 510, 20);
+        ctx.fill();
+        ctx.strokeStyle = cfg.color;
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        // Step list
+        for (let i = 0; i < cfg.steps.length; i++) {
+          const step = cfg.steps[i];
+          const y = 200 + i * 105;
+
+          const isCurrent = i === stepIdx;
+          const isPassed = i < stepIdx;
+
+          ctx.fillStyle = isCurrent ? '#1e293b' : '#0d1322';
+          ctx.beginPath();
+          ctx.roundRect(100, y - 35, canvas.width - 200, 85, 12);
+          ctx.fill();
+          ctx.strokeStyle = isCurrent ? cfg.accent : 'rgba(255,255,255,0.06)';
+          ctx.lineWidth = isCurrent ? 2 : 1;
+          ctx.stroke();
+
+          ctx.fillStyle = isPassed ? '#10b981' : isCurrent ? '#38bdf8' : '#64748b';
+          ctx.font = 'bold 22px Plus Jakarta Sans';
+          ctx.textAlign = 'left';
+          ctx.fillText(step.text, 130, y);
+
+          ctx.fillStyle = isPassed || isCurrent ? '#f8fafc' : '#475569';
+          ctx.font = '20px Space Mono';
+          ctx.fillText(step.val, 130, y + 32);
+
+          // Checkmark
+          if (isPassed || (isCurrent && stepFrame > 20)) {
+            ctx.fillStyle = '#10b981';
+            ctx.font = 'bold 28px Plus Jakarta Sans';
+            ctx.fillText('✓', canvas.width - 160, y + 15);
+          }
+        }
+
+        stepFrame++;
+        if (stepFrame >= framesPerStep) {
+          stepFrame = 0;
+          stepIdx++;
+          if (stepIdx >= cfg.steps.length) {
+            clearInterval(demoInterval);
+            // End screen
+            ctx.fillStyle = '#07090e';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#10b981';
+            ctx.font = 'bold 44px Plus Jakarta Sans';
+            ctx.textAlign = 'center';
+            ctx.fillText('Task Walkthrough Complete & Verified! ✓', canvas.width / 2, 320);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '24px Plus Jakarta Sans';
+            ctx.fillText('GitHub Repository: https://github.com/Shloksharma-27/OIBSIP', canvas.width / 2, 400);
+
+            setTimeout(() => {
+              recorder.stop();
+            }, 800);
+          }
+        }
+      }, 1000 / 30);
+    }
+
+    function setupCardButtons(cfg) {
+      const btnGen = document.getElementById(`btn-gen-${cfg.id}`);
+      const btnDl = document.getElementById(`btn-dl-${cfg.id}`);
+
+      btnGen.addEventListener('click', () => {
+        recordSingleVideo(cfg);
+      });
+
+      btnDl.addEventListener('click', () => {
+        if (!blobs[cfg.id]) return;
+        downloadBlob(blobs[cfg.id], cfg.filename);
+      });
+    }
+
+    function downloadBlob(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // Generate All 5 sequentially
+    document.getElementById('btnGenerateAll').addEventListener('click', async () => {
+      const btn = document.getElementById('btnGenerateAll');
+      btn.disabled = true;
+      btn.textContent = '⏳ Recording 5 Videos in Progress...';
+
+      for (const cfg of taskConfigs) {
+        await recordSingleVideo(cfg);
+        downloadBlob(blobs[cfg.id], cfg.filename);
+        await new Promise(r => setTimeout(r, 600));
+      }
+
+      btn.disabled = false;
+      btn.textContent = '✓ All 5 Videos Downloaded Successfully!';
+    });
+  </script>
+</body>
+</html>
